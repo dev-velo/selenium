@@ -141,6 +141,7 @@ npm_package(
         ":license",
         ":manager-linux",
         ":manager-macos",
+        ":manager-sbom",
         ":manager-windows",
         ":prod-src-files",
         "//javascript/selenium-webdriver/lib/atoms:bidi-mutation-listener",
@@ -306,6 +307,12 @@ copy_file(
     name = "manager-windows",
     src = "//common/manager:selenium-manager-windows",
     out = "bin/windows/selenium-manager.exe",
+)
+
+copy_file(
+    name = "manager-sbom",
+    src = "//common/manager:selenium-manager-sbom",
+    out = "bin/selenium-manager.cdx.json",
 )
 
 copy_to_bin(

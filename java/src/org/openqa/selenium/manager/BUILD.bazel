@@ -13,6 +13,7 @@ java_export(
     resources = [
         ":manager-linux",
         ":manager-macos",
+        ":manager-sbom",
         ":manager-windows",
     ],
     tags = [
@@ -45,4 +46,10 @@ copy_file(
     name = "manager-windows",
     src = "//common/manager:selenium-manager-windows",
     out = "windows/selenium-manager.exe",
+)
+
+copy_file(
+    name = "manager-sbom",
+    src = "//common/manager:selenium-manager-sbom",
+    out = "selenium-manager.cdx.json",
 )

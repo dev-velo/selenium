@@ -60,6 +60,15 @@ def print_windows(base_url, sha):
 """.format(sha, base_url + "/selenium-manager-windows.exe")
 
 
+def print_sbom(base_url, sha):
+    return """    http_file(
+        name = "download_sm_sbom",
+        sha256 = "{}",
+        url = "{}",
+    )
+""".format(sha, base_url + "/selenium-manager-sbom.cdx.json")
+
+
 if __name__ == "__main__":
     content = """# This file has been generated using `bazel run scripts:selenium_manager`
 
@@ -72,6 +81,7 @@ def selenium_manager():
     content = content + print_linux(base_url, sha_dict["linux"])
     content = content + print_macos(base_url, sha_dict["macos"])
     content = content + print_windows(base_url, sha_dict["windows"])
+    content = content + print_sbom(base_url, sha_dict["sbom"])
     content += """
 def _selenium_manager_artifacts_impl(_ctx):
     selenium_manager()

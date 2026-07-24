@@ -24,6 +24,14 @@ def selenium_manager():
         url = "https://github.com/SeleniumHQ/selenium_manager_artifacts/releases/download/selenium-manager-e396475/selenium-manager-windows.exe",
     )
 
+    # Bootstrap URL for the stacked bindings change. Regenerate this file with
+    # `bazel run scripts:selenium_manager` after the first SBOM release to pin
+    # its immutable tag and SHA-256.
+    http_file(
+        name = "download_sm_sbom",
+        url = "https://github.com/SeleniumHQ/selenium_manager_artifacts/releases/latest/download/selenium-manager-sbom.cdx.json",
+    )
+
 def _selenium_manager_artifacts_impl(_ctx):
     selenium_manager()
 
